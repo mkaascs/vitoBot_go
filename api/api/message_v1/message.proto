@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "api/api/message_v1/protobuf";
+
+service MessageService {
+    rpc GetMessage (GetMessageRequest) returns (MessageResponse);
+    rpc GetRandomMessage (GetRandomMessageRequest) returns (MessageResponse);
+    rpc AddMessage (AddMessageCommand) returns (AddMessageCommandResult);
+}
+
+message GetMessageRequest {
+    uint64 messageId = 1;
+}
+
+message GetRandomMessageRequest {
+    uint64 chatId = 1;
+    MessageType type = 2;
+}
+
+enum MessageType {
+    _ = 0;
+    Text = 1;
+    Sticker = 2;
+    Video = 3;
+    Image = 4;
+    GIF = 5;
+    reserved 6 to 10;
+}
+
+message MessageResponse {
+    uint64 id = 1;
+    string content = 2;
+    MessageType type = 3;
+    SenderInfo sender = 4;
+}
+
+message SenderInfo {
+    uint64 id = 1;
+    string name = 2;
+}
+
+message AddMessageCommand {
+    uint64 chatId = 1;
+    string content = 2;
+    MessageType type = 3;
+}
+
+message AddMessageCommandResult {
+    uint64 messageId = 1;
+}
