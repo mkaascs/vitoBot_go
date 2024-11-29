@@ -19,6 +19,16 @@ message GetRandomMessageRequest {
     MessageType type = 2;
 }
 
+message AddMessageCommand {
+  uint64 chatId = 1;
+  string content = 2;
+  MessageType type = 3;
+}
+
+message AddMessageCommandResult {
+  uint64 messageId = 1;
+}
+
 enum MessageType {
     _ = 0;
     Text = 1;
@@ -41,12 +51,3 @@ message SenderInfo {
     string name = 2;
 }
 
-message AddMessageCommand {
-    uint64 chatId = 1;
-    string content = 2;
-    MessageType type = 3;
-}
-
-message AddMessageCommandResult {
-    uint64 messageId = 1;
-}
