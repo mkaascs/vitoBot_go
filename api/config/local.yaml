@@ -1,5 +1,0 @@
-env: "local" # prod
-connection_string: "root:makas1506@tcp(127.0.0.1:3306)/vitoBot"
-grpc:
-  port: 8060
-  timeout: 10h
